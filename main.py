@@ -17,11 +17,24 @@ MCP_ENDPOINT = os.getenv('MCP_ENDPOINT')
 if not MCP_ENDPOINT:
     raise ValueError("MCP_ENDPOINT not found in environment variables. Please check your .env file.")
 
-def query_with_mcp(question: str):
+def query_with_mcp(question: str, force_mcp: bool = True):
     """Query using OpenAI Responses API with MCP tools"""
     
     print(f"\nQuerying: {question}")
     print("-" * 40)
+    
+    # Prepare the input with custom instructions
+    if force_mcp:
+        enhanced_input = f"""IMPORTANT: You MUST use the query_customgpt_knowledge_base MCP tools to answer this question. Do not rely on your general knowledge alone. Always query the knowledge base first using the available MCP tools before providing your response.
+
+User Question: {question}
+
+Instructions:
+1. First, use the MCP tool query_customgpt_knowledge_base to query the customgpt_rag knowledge base
+2. Base your response primarily on the information retrieved from the knowledge base
+3. If the knowledge base doesn't have relevant information, then supplement with your general knowledge but clearly indicate which parts come from which source"""
+    else:
+        enhanced_input = question
     
     try:
         resp = client.responses.create(
@@ -34,7 +47,7 @@ def query_with_mcp(question: str):
                     "require_approval": "never",  # Skip approvals for faster execution
                 }
             ],
-            input=question,
+            input=enhanced_input,
         )
         
         print("Response:")
@@ -60,14 +73,14 @@ def query_with_mcp(question: str):
                 print(f"  Server {i+1}: '{tools_item.server_label}'")
                 if hasattr(tools_item, 'tools') and tools_item.tools:
                     print(f"    Available tools: {len(tools_item.tools)}")
-                    for j, tool in enumerate(tools_item.tools[:5]):  # Show first 5 tools
+                    for j, tool in enumerate(tools_item.tools[:100]):  # Show first 100 tools
                         print(f"      {j+1}. {tool.name}")
                         if hasattr(tool, 'description') and tool.description:
                             # Show first line of description
                             desc_line = tool.description.split('\n')[0][:80]
                             print(f"         → {desc_line}{'...' if len(tool.description) > 80 else ''}")
-                    if len(tools_item.tools) > 5:
-                        print(f"      ... and {len(tools_item.tools) - 5} more tools")
+                    if len(tools_item.tools) > 100:
+                        print(f"      ... and {len(tools_item.tools) - 100} more tools")
                 else:
                     print(f"    ❌ No tools found")
         else:
@@ -85,11 +98,9 @@ def query_with_mcp(question: str):
                     try:
                         import json
                         args_dict = json.loads(call_item.arguments)
-                        for key, value in args_dict.items():
-                            if isinstance(value, str) and len(value) > 100:
-                                print(f"       {key}: {value[:100]}...")
-                            else:
-                                print(f"       {key}: {value}")
+                        # Pretty print the JSON input
+                        pretty_input = json.dumps(args_dict, indent=8, ensure_ascii=False)
+                        print(f"{pretty_input}")
                     except:
                         print(f"       Raw: {call_item.arguments}")
                 else:
@@ -99,11 +110,48 @@ def query_with_mcp(question: str):
                 if hasattr(call_item, 'output') and call_item.output:
                     print(f"     📤 OUTPUT:")
                     output_str = str(call_item.output)
-                    if len(output_str) > 500:
-                        print(f"       {output_str[:500]}...")
-                        print(f"       [Output truncated - full length: {len(output_str)} characters]")
-                    else:
-                        print(f"       {output_str}")
+                    
+                    # Try to parse and pretty print if it's JSON
+                    try:
+                        import json
+                        # Check if output looks like JSON
+                        if output_str.strip().startswith(('{', '[')):
+                            output_dict = json.loads(output_str)
+                            if len(output_str) > 1000:
+                                # For very long outputs, show truncated pretty JSON
+                                pretty_output = json.dumps(output_dict, indent=8, ensure_ascii=False)
+                                if len(pretty_output) > 1000:
+                                    lines = pretty_output.split('\n')
+                                    truncated_lines = lines[:20]  # Show first 20 lines
+                                    print('\n'.join(truncated_lines))
+                                    print(f"       ... [JSON truncated - showing first 20 lines of {len(lines)} total lines]")
+                                else:
+                                    print(f"{pretty_output}")
+                            else:
+                                # Short JSON - show it all pretty printed
+                                pretty_output = json.dumps(output_dict, indent=8, ensure_ascii=False)
+                                print(f"{pretty_output}")
+                        else:
+                            # Not JSON, show as regular text with length limit
+                            if len(output_str) > 800:
+                                print(f"       {output_str[:800]}...")
+                                print(f"       [Text truncated - full length: {len(output_str)} characters]")
+                            else:
+                                print(f"       {output_str}")
+                    except json.JSONDecodeError:
+                        # Not valid JSON, show as regular text
+                        if len(output_str) > 800:
+                            print(f"       {output_str[:800]}...")
+                            print(f"       [Text truncated - full length: {len(output_str)} characters]")
+                        else:
+                            print(f"       {output_str}")
+                    except Exception:
+                        # Fallback to simple string display
+                        if len(output_str) > 800:
+                            print(f"       {output_str[:800]}...")
+                            print(f"       [Output truncated - full length: {len(output_str)} characters]")
+                        else:
+                            print(f"       {output_str}")
                 else:
                     print(f"     📤 OUTPUT: None")
                 
@@ -128,19 +176,19 @@ def query_with_mcp(question: str):
         print(f"  ✅ MCP integration: {'Working!' if mcp_tools_items else 'Failed - no tools discovered'}")
         
         # Optional: Show complete raw data for MCP calls (uncomment if needed for deep debugging)
-        # if mcp_call_items:
-        #     print(f"\n🔬 RAW MCP CALL DATA:")
-        #     for i, call_item in enumerate(mcp_call_items):
-        #         print(f"  Call {i+1} raw data:")
-        #         for attr in dir(call_item):
-        #             if not attr.startswith('_'):
-        #                 try:
-        #                     value = getattr(call_item, attr)
-        #                     if not callable(value):
-        #                         print(f"    {attr}: {value}")
-        #                 except:
-        #                     pass
-        #         print("    " + "-" * 40)
+        if mcp_call_items:
+            print(f"\n🔬 RAW MCP CALL DATA:")
+            for i, call_item in enumerate(mcp_call_items):
+                print(f"  Call {i+1} raw data:")
+                for attr in dir(call_item):
+                    if not attr.startswith('_'):
+                        try:
+                            value = getattr(call_item, attr)
+                            if not callable(value):
+                                print(f"    {attr}: {value}")
+                        except:
+                            pass
+                print("    " + "-" * 40)
         
         return resp
         
@@ -155,13 +203,12 @@ def main():
     """Main function to run queries"""
     
     queries = [
-        "market volatility",
-        "What specific financial documents or data do you have access to in your knowledge base?",
-        "Please query your knowledge base about recent market trends and provide a detailed analysis"
+        "what is vanguards view on target date funds ?",
     ]
     
     for query in queries:
-        response = query_with_mcp(query)
+        # Set force_mcp=True to always use MCP tools, False to let model decide
+        response = query_with_mcp(query, force_mcp=True)
         print("\n" + "="*80 + "\n")
 
 if __name__ == "__main__":

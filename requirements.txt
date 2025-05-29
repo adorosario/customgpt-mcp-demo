@@ -1,3 +1,2 @@
-openai-agents==0.0.16
-openai-agents-mcp==0.0.8
 openai>=1.81.0
+dotenv
