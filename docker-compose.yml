@@ -1,0 +1,17 @@
+# Removed version as it's obsolete (fixes your warning)
+services:
+  rag-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Mount your application code into /app
+    volumes:
+      - .:/app
+    # Mount .env file explicitly to ensure it's available
+    env_file:
+      - .env
+    # Set working directory
+    working_dir: /app
+    # Default command
+    command: python main.py
+    restart: unless-stopped
