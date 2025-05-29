@@ -122,7 +122,7 @@ Instructions:
                                 pretty_output = json.dumps(output_dict, indent=8, ensure_ascii=False)
                                 if len(pretty_output) > 1000:
                                     lines = pretty_output.split('\n')
-                                    truncated_lines = lines[:20]  # Show first 20 lines
+                                    truncated_lines = lines[:1000]  # Show first 1000 lines
                                     print('\n'.join(truncated_lines))
                                     print(f"       ... [JSON truncated - showing first 20 lines of {len(lines)} total lines]")
                                 else:
@@ -133,21 +133,21 @@ Instructions:
                                 print(f"{pretty_output}")
                         else:
                             # Not JSON, show as regular text with length limit
-                            if len(output_str) > 800:
-                                print(f"       {output_str[:800]}...")
+                            if len(output_str) > 8000:
+                                print(f"       {output_str[:8000]}...")
                                 print(f"       [Text truncated - full length: {len(output_str)} characters]")
                             else:
                                 print(f"       {output_str}")
                     except json.JSONDecodeError:
                         # Not valid JSON, show as regular text
-                        if len(output_str) > 800:
-                            print(f"       {output_str[:800]}...")
+                        if len(output_str) > 8000:
+                            print(f"       {output_str[:8000]}...")
                             print(f"       [Text truncated - full length: {len(output_str)} characters]")
                         else:
                             print(f"       {output_str}")
                     except Exception:
                         # Fallback to simple string display
-                        if len(output_str) > 800:
+                        if len(output_str) > 8000:
                             print(f"       {output_str[:800]}...")
                             print(f"       [Output truncated - full length: {len(output_str)} characters]")
                         else:
