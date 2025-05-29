@@ -1,0 +1,145 @@
+Querying: what is vanguards view on target date funds ?
+----------------------------------------
+Response:
+Based on the information retrieved from the knowledge base, here is Vanguard’s view on target date funds (TDFs):
+
+- Vanguard considers TDFs to be a strategic investment solution, aimed at helping a broad spectrum of investors reach their retirement goals. These funds automatically adjust their asset allocation over time, becoming more conservative as the target retirement date approaches.
+
+Key aspects of Vanguard’s perspective include:
+
+1. Glide Path Design: Vanguard’s TDFs use a glide path that optimizes asset allocation to balance risk and reward from early career through retirement. This glide path is informed by investment theory and behavioral insights to help investors retire with adequate financial resources.
+
+2. Focus on the Average Investor: The allocations in Vanguard’s TDFs are geared toward the average investor, with assumptions such as moderately conservative risk tolerance, average savings rates, and retiring at age 65 in mind.
+
+3. Comprehensive Investment Solution: Vanguard’s TDFs are designed as a complete portfolio in a single fund, providing ease and convenience for investors by promoting financial well-being up to and through retirement.
+
+4. Performance and Cost Efficiency: These funds are known for low costs and broad diversification. They offer efficient exposure to global stocks and bonds, and have posted top-quartile returns compared to peers over a 10-year period.
+
+5. Risk Management: Vanguard highlights that TDFs involve risks from their underlying funds and that there are no guaranteed returns, including at the target date. Investors are encouraged to periodically review their asset mix to ensure it aligns with their needs.
+
+6. Support for Retirement Planning: Vanguard actively supports features such as automatic enrollment and savings, designed to improve retirement outcomes for participants.
+
+Overall, Vanguard’s approach to target date funds is based on helping investors achieve long-term income sufficiency with thoughtful design, low costs, broad diversification, and simplicity.
+
+(Source: Vanguard Knowledge Base)
+
+============================================================
+🔍 DEBUG INFORMATION
+============================================================
+📋 Response ID: resp_6838844f9d208198aaf0dfa4795703770f14727b13a185e2
+🤖 Model used: gpt-4.1-2025-04-14
+💰 Token usage: 4633 in, 447 out, 5080 total
+📊 Output items: 3
+
+🔧 MCP TOOLS DISCOVERED: 1 server(s)
+  Server 1: 'customgpt_rag'
+    Available tools: 11
+      1. fetch_customgpt_conversations
+         → Find previous conversation you had with the Expert CustomGPT.ai Knowledge Base A...
+      2. create_customgpt_conversation
+         → Use this tool if user explicitly asks you to start new conversation with the Exp...
+      3. rename_customgpt_conversation
+         → Use this tool to update the name of the conversation with the Expert CustomGPT.a...
+      4. delete_customgpt_conversation
+         → Use this tool to delete the conversation with the Expert CustomGPT.ai Knowledge ...
+      5. get_customgpt_messages
+         → Retrieve messages you exchanged with Expert CustomGPT.ai Knowledge Base Agent fo...
+      6. send_customgpt_message
+         → Send the new question for the Expert CustomGPT.ai Knowledge Base Agent to the ex...
+      7. get_customgpt_message
+         → Retrieve a specific message from an existing conversation with the Expert Custom...
+      8. customgpt_knowledge_base_info
+         → Retrieve documents available in the knowledge base managed by the Expert CustomG...
+      9. delete_customgpt_document
+         → Remove a document from the knowledge base managed by the Expert CustomGPT.ai Kno...
+      10. get_customgpt_citation
+         → Retrieve information about a specific source that the Expert CustomGPT.ai Knowle...
+      11. query_customgpt_knowledge_base
+         → Get information from the Expert CustomGPT.ai Knowledge Base Agent. This agent wi...
+
+🔄 MCP TOOLS CALLED: 1
+
+  📞 Call 1: 'query_customgpt_knowledge_base'
+     Server: customgpt_rag
+     📥 INPUT:
+{
+        "name": "Vanguard's view on target date funds",
+        "prompt": "What is Vanguard's view on target date funds?",
+        "custom_persona": "",
+        "lang": "en",
+        "stream": false,
+        "api_key": "{{api_key}}",
+        "project_id": "{{project_id}}"
+}
+     📤 OUTPUT:
+{
+        "conversation": {
+                "status": "success",
+                "data": {
+                        "created_at": "2025-05-29T15:59:15Z",
+                        "updated_at": "2025-05-29T15:59:15Z",
+                        "deleted_at": null,
+                        "id": 4520854,
+                        "name": "Vanguard&apos;s view on target date funds",
+                        "project_id": 66903,
+                        "created_by": 3656,
+                        "session_id": "18ccdce1-4d30-426e-be18-5e20d084e477"
+                }
+        },
+        "message": {
+                "status": "success",
+                "data": {
+                        "id": 7958802,
+                        "user_id": 3656,
+                        "user_query": "What is Vanguard&apos;s view on target date funds?",
+                        "openai_response": "Vanguard views Target Date Funds (TDFs) as a strategic investment solution designed to help a wide range of investors achieve their retirement goals. These funds are structured to balance risk and return by automatically adjusting their asset allocation over time, becoming more conservative as the target retirement date approaches. Key aspects of Vanguard's perspective on TDFs include:\n\n1. **Glide Path Design**: Vanguard's TDFs follow a glide path that optimizes asset allocation to balance risk and reward throughout an investor's journey to and through retirement. This approach is based on investment theory and behavioral insights, aiming to help participants retire with sufficient financial resources.\n\n2. **Focus on the Average Investor**: The asset allocations in Vanguard's TDFs are tailored to the average investor, considering factors such as moderately conservative risk tolerance, average savings rates, and the expectation of retiring at age 65.\n\n3. **Comprehensive Investment Solution**: Vanguard's TDFs offer a complete portfolio in a single fund, making them a convenient option for investors. They are designed to promote financial well-being for participants up to and through retirement.\n\n4. **Performance and Cost Efficiency**: Vanguard's TDFs are known for their low costs and broad diversification, which provide efficient exposure to global stocks and bonds. On average, these funds have performed in the top quartile among their peer group for 10-year returns.\n\n5. **Risk Management**: Investments in TDFs are subject to the risks of their underlying funds, and there is no guarantee of returns at any time, including on or after the target date. Vanguard emphasizes the importance of regularly checking the asset mix to ensure it aligns with an investor's current situation.\n\n6. **Support for Retirement Planning**: Vanguard has been proactive in supporting retirement plan design, advocating for features like default enrollment and automatic savings to enhance retirement outcomes.\n\nOverall, Vanguard's approach to TDFs reflects a commitment to helping investors achieve long-term retirement income sufficiency through thoughtful design, low costs, and a focus on the needs of the average investor.",
+                        "created_at": "2025-05-29T15:59:24Z",
+                        "updated_at": "2025-05-29T15:59:24Z",
+                        "conversation_id": null,
+                        "citations": [
+                                59723805,
+                                59723691,
+                                59723616,
+                                59723605,
+                                59723866
+                        ],
+                        "metadata": {
+                                "user_ip": "44.192.57.106",
+                                "user_agent": "python-httpx/0.28.1",
+                                "external_id": "",
+                                "request_source": "mcp"
+                        },
+                        "response_feedback": null
+                }
+        },
+        "session_id": "18ccdce1-4d30-426e-be18-5e20d084e477"
+}
+       ... [JSON truncated - showing first 20 lines of 42 total lines]
+     ✅ Status: Success
+     --------------------------------------------------
+
+📊 SUMMARY:
+  🔧 Tools available: 11
+  🔄 Tools called: 1
+  ✅ MCP integration: Working!
+
+🔬 RAW MCP CALL DATA:
+  Call 1 raw data:
+    arguments: {"name":"Vanguard's view on target date funds","prompt":"What is Vanguard's view on target date funds?","custom_persona":"","lang":"en","stream":false,"api_key":"{{api_key}}","project_id":"{{project_id}}"}
+    error: None
+    id: mcp_683884523a38819890b401280b5a3a2e0f14727b13a185e2
+/app/main.py:186: PydanticDeprecatedSince211: Accessing the 'model_computed_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.
+  value = getattr(call_item, attr)
+    model_computed_fields: {}
+    model_config: {'extra': 'allow', 'defer_build': True}
+    model_extra: {'approval_request_id': None}
+/app/main.py:186: PydanticDeprecatedSince211: Accessing the 'model_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.
+  value = getattr(call_item, attr)
+    model_fields: {'id': FieldInfo(annotation=str, required=True), 'arguments': FieldInfo(annotation=str, required=True), 'name': FieldInfo(annotation=str, required=True), 'server_label': FieldInfo(annotation=str, required=True), 'type': FieldInfo(annotation=Literal['mcp_call'], required=True), 'error': FieldInfo(annotation=Union[str, NoneType], required=False, default=None), 'output': FieldInfo(annotation=Union[str, NoneType], required=False, default=None)}
+    model_fields_set: {'arguments', 'name', 'server_label', 'id', 'approval_request_id', 'error', 'output', 'type'}
+    name: query_customgpt_knowledge_base
+    output: {"conversation": {"status": "success", "data": {"created_at": "2025-05-29T15:59:15Z", "updated_at": "2025-05-29T15:59:15Z", "deleted_at": null, "id": 4520854, "name": "Vanguard&apos;s view on target date funds", "project_id": 66903, "created_by": 3656, "session_id": "18ccdce1-4d30-426e-be18-5e20d084e477"}}, "message": {"status": "success", "data": {"id": 7958802, "user_id": 3656, "user_query": "What is Vanguard&apos;s view on target date funds?", "openai_response": "Vanguard views Target Date Funds (TDFs) as a strategic investment solution designed to help a wide range of investors achieve their retirement goals. These funds are structured to balance risk and return by automatically adjusting their asset allocation over time, becoming more conservative as the target retirement date approaches. Key aspects of Vanguard's perspective on TDFs include:\n\n1. **Glide Path Design**: Vanguard's TDFs follow a glide path that optimizes asset allocation to balance risk and reward throughout an investor's journey to and through retirement. This approach is based on investment theory and behavioral insights, aiming to help participants retire with sufficient financial resources.\n\n2. **Focus on the Average Investor**: The asset allocations in Vanguard's TDFs are tailored to the average investor, considering factors such as moderately conservative risk tolerance, average savings rates, and the expectation of retiring at age 65.\n\n3. **Comprehensive Investment Solution**: Vanguard's TDFs offer a complete portfolio in a single fund, making them a convenient option for investors. They are designed to promote financial well-being for participants up to and through retirement.\n\n4. **Performance and Cost Efficiency**: Vanguard's TDFs are known for their low costs and broad diversification, which provide efficient exposure to global stocks and bonds. On average, these funds have performed in the top quartile among their peer group for 10-year returns.\n\n5. **Risk Management**: Investments in TDFs are subject to the risks of their underlying funds, and there is no guarantee of returns at any time, including on or after the target date. Vanguard emphasizes the importance of regularly checking the asset mix to ensure it aligns with an investor's current situation.\n\n6. **Support for Retirement Planning**: Vanguard has been proactive in supporting retirement plan design, advocating for features like default enrollment and automatic savings to enhance retirement outcomes.\n\nOverall, Vanguard's approach to TDFs reflects a commitment to helping investors achieve long-term retirement income sufficiency through thoughtful design, low costs, and a focus on the needs of the average investor.", "created_at": "2025-05-29T15:59:24Z", "updated_at": "2025-05-29T15:59:24Z", "conversation_id": null, "citations": [59723805, 59723691, 59723616, 59723605, 59723866], "metadata": {"user_ip": "44.192.57.106", "user_agent": "python-httpx/0.28.1", "external_id": "", "request_source": "mcp"}, "response_feedback": null}}, "session_id": "18ccdce1-4d30-426e-be18-5e20d084e477"}
+    server_label: customgpt_rag
+    type: mcp_call
+    ----------------------------------------
+
